@@ -1,0 +1,7 @@
+﻿<Root>
+  <Country Name="Ангола">
+    <City Name="Никорагуа" IsCapital="false">
+      <Place Name="Аэропорт Никорагуа" /> 
+    </City>
+  </Country>
+</Root>

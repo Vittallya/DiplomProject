@@ -1,0 +1,22 @@
+﻿<Application x:Class="AirClub.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AirClub"
+             StartupUri="MainWindow.xaml">
+
+    <!--StartupUri="Windows/test.xaml"-->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResoursesXamlAC/Other.xaml"/>
+                <ResourceDictionary Source="ResoursesXamlAC/Colors.xaml"/>
+                <ResourceDictionary Source="ResoursesXamlAC/Controls.xaml"/>
+                <ResourceDictionary Source="ResoursesXamlAC/Converters.xaml"/>
+                <ResourceDictionary Source="ResoursesXamlAC/Images.xaml"/>
+                <ResourceDictionary Source="ResoursesXamlAC/DataTemplates.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>

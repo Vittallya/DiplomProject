@@ -1,0 +1,46 @@
+﻿<Window x:Class="AirClub.Windows.AccessCodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirClub.Windows"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        DataContext="{Binding AccessCodeViewModel, Source={StaticResource ViewModelLocator}}"
+        Title="AccessCodeWindow" Height="750" Width="620">
+    <Grid Margin="20 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl HorizontalAlignment="Center" ItemsSource="{Binding AccessItems}">
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0 5" Orientation="Horizontal">
+                        <TextBlock Width="280" Text="{Binding AccessSection.Name}"/>
+                        <!--<ComboBox 
+                            DisplayMemberPath="Name"
+                            SelectedIndex="{Binding UserSection.Value, UpdateSourceTrigger=PropertyChanged}"
+                            ItemsSource="{Binding AccessSection.Params}">
+                        </ComboBox>-->
+                        <ComboBox 
+                            DisplayMemberPath="Name"
+                            SelectedIndex="{Binding UserSection.Value, UpdateSourceTrigger=PropertyChanged}"
+                            ItemsSource="{Binding AccessSection.Params}">
+                        </ComboBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            
+        </ItemsControl>
+        <Button 
+            Command="{Binding Accept}"
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Right" 
+            Padding="7 3"
+            Grid.Row="1" 
+            Content="Редактировать"/>
+    </Grid>
+</Window>

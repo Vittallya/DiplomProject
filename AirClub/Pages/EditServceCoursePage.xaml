@@ -1,0 +1,274 @@
+﻿<Page x:Class="AirClub.Pages.EditServceCoursePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AirClub.Pages"
+      mc:Ignorable="d" 
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      xmlns:v="clr-namespace:AirClub.ViewModels.Validators"
+      DataContext="{Binding EditServiceCourseViewModel, Source={StaticResource ViewModelLocator}}"
+      Title="{Binding Title, UpdateSourceTrigger=PropertyChanged}"  >
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Validation.Error="stack_Error" x:Name="stack" Margin="20 0" TextBlock.FontSize="12.5" MaxWidth="550"   MinWidth="250" >
+
+
+        <DockPanel Margin="0 5">
+            <TextBlock Text="Название" DockPanel.Dock="Top"/>
+            <TextBox 
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                IsReadOnly="{Binding IsReadOnly}"
+                Margin="0 5 0 0" 
+                FontSize="16">
+                <Binding Path="CurrentElement.Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                    <Binding.ValidationRules>
+                        <v:TextBoxRule/>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+        </DockPanel>
+
+        <Grid Margin="0 5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="0 0 5 0" Orientation="Vertical">
+                    <TextBlock Text="Возраст от" DockPanel.Dock="Top"/>
+                    <TextBox 
+                        Style="{StaticResource ValidationControl}"
+                        Padding="2"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        Margin="0 5 0 0" 
+                        FontSize="16">
+                        <Binding Path="CurrentElement.AgeFrom" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                            <Binding.ValidationRules>
+                                <v:PositiveValueRule/>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel Margin="5 0 0 0" Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="Возраст до" DockPanel.Dock="Top"/>
+                    <TextBox 
+                        Style="{StaticResource ValidationControl}"
+                        Padding="2"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        Margin="0 5 0 0" 
+                        FontSize="16">
+                        <Binding Path="CurrentElement.AgeBefore" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                            <Binding.ValidationRules>
+                                <v:PositiveValueRule/>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+
+        <DockPanel Margin="0 5">
+            <TextBlock Text="Физические требования" DockPanel.Dock="Top"/>
+            <TextBox
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                TextWrapping="Wrap"
+                IsReadOnly="{Binding IsReadOnly}"
+                Margin="0 5 0 0" 
+                FontSize="16">
+                <Binding Path="CurrentElement.PhysReqs" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                    <Binding.ValidationRules>
+                        <v:TextBoxRule/>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+        </DockPanel>
+
+        <DockPanel Margin="0 5">
+                <TextBlock Text="Стоимость" DockPanel.Dock="Top"/>
+                <TextBox
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                TextWrapping="Wrap"
+                IsReadOnly="{Binding IsReadOnly}"
+                Margin="0 5 0 0" 
+                FontSize="16">
+                    <Binding Path="CurrentElement.Cost" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                        <Binding.ValidationRules>
+                            <v:PositiveValueRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </DockPanel>
+
+        <DockPanel Visibility="{Binding IsCourse, Converter={StaticResource BoolToVisibility}}" Margin="0 5">
+                <TextBlock Margin="0 0 0 5" Text="Длительность курса" DockPanel.Dock="Top"/>
+
+                <TextBox IsReadOnly="True"
+                         Padding="5 2"
+                         Text="{Binding CurrentElement.CourseDuration, StringFormat='{}{0} мес.'}"/>
+                <Slider 
+                    Visibility="{Binding IsReadOnly, Converter={StaticResource BoolToVisibilityInvert}}"
+                    Margin="10 0 0 0"
+                    Value="{Binding CurrentElement.CourseDuration, UpdateSourceTrigger=PropertyChanged}" 
+                    Minimum="1" 
+                    TickFrequency="1"
+                    Maximum="84"/>
+            </DockPanel>
+        <DockPanel Visibility="{Binding IsCourse, Converter={StaticResource BoolToVisibility}}" Margin="0 5">
+                <TextBlock Margin="0 0 0 5" Text="Длительность занятия" DockPanel.Dock="Top"/>
+
+                <TextBox IsReadOnly="True"
+                         Padding="5 2"
+                         Text="{Binding CurrentElement.ExersiceDuration, Converter={StaticResource MinuteToTimeSpan}, Mode=OneWay}"/>
+                <Slider 
+                    Visibility="{Binding IsReadOnly, Converter={StaticResource BoolToVisibilityInvert}}"
+                    Margin="10 0 0 0"
+                    Value="{Binding CurrentElement.ExersiceDuration, UpdateSourceTrigger=PropertyChanged}" 
+                    Minimum="1" 
+                    TickFrequency="1"
+                    Maximum="300"/>
+            </DockPanel>
+
+            <DockPanel Visibility="{Binding IsComp, Converter={StaticResource BoolToVisibility}}" Margin="0 5">
+                <TextBlock Text="Дата начала" DockPanel.Dock="Top"/>
+                <DatePicker
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                IsEnabled="{Binding IsReadOnly, Converter={StaticResource BoolInvert}}"
+                Margin="0 5 0 0" 
+                FontSize="16">
+                    <DatePicker.SelectedDate>
+                        <Binding Path="CurrentElement.DateBegin" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                            <Binding.ValidationRules>
+                                <v:TextBoxRule/>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+
+
+                </DatePicker>
+            </DockPanel>
+
+            <DockPanel Visibility="{Binding IsComp, Converter={StaticResource BoolToVisibility}}" Margin="0 5">
+                <TextBlock Text="Дата окончания" DockPanel.Dock="Top"/>
+                <DatePicker
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                IsEnabled="{Binding IsReadOnly, Converter={StaticResource BoolInvert}}"
+                Margin="0 5 0 0" 
+                FontSize="16">
+                    <DatePicker.SelectedDate>
+                        <Binding Path="CurrentElement.DateEnd" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                            <Binding.ValidationRules>
+                                <v:TextBoxRule/>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+
+
+                </DatePicker>
+            </DockPanel>
+
+            <DockPanel 
+                Visibility="{Binding IsRest, Converter={StaticResource BoolToVisibility}}"
+                Margin="0 5">
+
+                <TextBlock Margin="0 0 0 5" Text="Тур" DockPanel.Dock="Top"/>
+
+                <Button 
+                    Visibility="{Binding IsReadOnly, Converter={StaticResource BoolToVisibilityInvert}}"
+                    Style="{StaticResource ButtonIcon}"
+                    Command="{Binding ChooseTour}"
+                    DockPanel.Dock="Right"
+                    HorizontalAlignment="Right" 
+                    Margin="10 0 0 0">
+                    <Image  Height="25" Source="/Resources/import1.png"/>
+                </Button>
+
+                <ComboBox 
+                    VerticalAlignment="Center"
+                    IsEnabled="{Binding IsReadOnly, Converter={StaticResource BoolInvert}}"
+                    ItemsSource="{Binding Tours}"
+                    SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}"
+                    DisplayMemberPath="Name"
+                    FontSize="16"/>
+
+            </DockPanel>
+
+            <Grid Visibility="{Binding IsRest, Converter={StaticResource BoolToVisibility}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <DockPanel Margin="0 5">
+                    <TextBlock Text="Мин. кол-во человек" DockPanel.Dock="Top"/>
+                    <TextBox
+                    Style="{StaticResource ValidationControl}"
+                    Padding="2"
+                    TextWrapping="Wrap"
+                    IsReadOnly="{Binding IsReadOnly}"
+                    Margin="0 5 0 0" 
+                    FontSize="16">
+                        <Binding Path="CurrentElement.MinCountPeople" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                            <Binding.ValidationRules>
+                                <v:PositiveValueRule/>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </DockPanel>
+
+                <DockPanel Grid.Column="2" Margin="0 5">
+                <TextBlock Text="Макс. кол-во человек" DockPanel.Dock="Top"/>
+                <TextBox
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                TextWrapping="Wrap"
+                IsReadOnly="{Binding IsReadOnly}"
+                Margin="0 5 0 0" 
+                FontSize="16">
+                    <Binding Path="CurrentElement.MaxCountPeople" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                        <Binding.ValidationRules>
+                            <v:PositiveValueRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+            </DockPanel>
+            </Grid>
+            <Button 
+            x:Name="btn"
+            HorizontalContentAlignment="Center" 
+            Command="{Binding Accept}"  
+            Margin="0 10" 
+            Padding="0 4">
+
+            <Grid Height="30" >
+                <Image gif:ImageBehavior.AnimatedSource="/Resources/loading1.gif"
+                       gif:ImageBehavior.RepeatBehavior="Forever"
+                       Margin="-35 0 0 0"
+                       Visibility="{Binding LoadingVisibility}"
+                       HorizontalAlignment="Left"/>
+                <TextBlock 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" Text="Применить"/>
+            </Grid>
+        </Button>
+
+
+    </StackPanel>
+    </ScrollViewer>
+</Page>

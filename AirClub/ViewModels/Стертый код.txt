@@ -1,0 +1,40 @@
+﻿
+--Из ElementsBaseViewModel
+=========================================================================================================================
+        protected virtual void GenerateFilter()
+        {
+            TDbClass copy = DbClassExtensions.GetCopy<TDbClass>();
+
+            for ( int i = 0; i < copy.Columns.Length; i++ )
+            {
+                string propName = copy.Columns[i];
+                string columnDb = copy.ColumnsDb[i];
+                string columnDisplay = copy.ColumnsDisplay[i];
+
+                if ( !PropertiesNonUsedInFilter.Contains(copy.Columns[i]) )
+                {
+                    //Эти свойства используются
+                    FilterParam<TDbClass> filterProperty = new FilterParam<TDbClass>();
+                    filterProperty.Control = GetFilterControl(copy[i].GetType());
+                    filterProperty.FilterPredicate = GetFilterPredicate(copy[i], propName, filterProperty.Control);
+                    filterProperty.Name = columnDisplay;
+                    filterProperty.FilterChanged += (sender, e) => RefreshFilter();
+
+                    FilterParams.Add(filterProperty);
+                }
+            }
+        }
+
+
+        protected virtual Func<TDbClass, bool> GetFilterPredicate(object property, string propertyName, object value)
+        {
+
+            if(property.GetType() == typeof(DateTime) )
+            {
+
+            }
+
+            return elem => elem[propertyName].ToString().StartsWith(value.ToString());
+        }
+        
+=========================================================================================================================

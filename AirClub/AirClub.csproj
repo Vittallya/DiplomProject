@@ -1,0 +1,159 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200508121745_Places_Transfers_Partners.cs" />
+    <Compile Remove="Migrations\20200508121745_Places_Transfers_Partners.Designer.cs" />
+    <Compile Remove="Migrations\20200517181645_Insurance-Reservation.cs" />
+    <Compile Remove="Migrations\20200517181645_Insurance-Reservation.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Model\Access\AccessConfig.xml" />
+    <None Remove="Resources\accept.png" />
+    <None Remove="Resources\add.png" />
+    <None Remove="Resources\back.png" />
+    <None Remove="Resources\back1.png" />
+    <None Remove="Resources\client.png" />
+    <None Remove="Resources\clone.png" />
+    <None Remove="Resources\Competitions.png" />
+    <None Remove="Resources\CompetitionsLow.png" />
+    <None Remove="Resources\correct.png" />
+    <None Remove="Resources\Courses.png" />
+    <None Remove="Resources\CoursesLow.png" />
+    <None Remove="Resources\edit.png" />
+    <None Remove="Resources\employee.png" />
+    <None Remove="Resources\error.png" />
+    <None Remove="Resources\hidden.png" />
+    <None Remove="Resources\ImgEdit.bmp" />
+    <None Remove="Resources\import.png" />
+    <None Remove="Resources\import1.png" />
+    <None Remove="Resources\jet.png" />
+    <None Remove="Resources\loading.gif" />
+    <None Remove="Resources\loading1.gif" />
+    <None Remove="Resources\locationCapital.png" />
+    <None Remove="Resources\locationCity.png" />
+    <None Remove="Resources\locationCity1.png" />
+    <None Remove="Resources\locationCity2.png" />
+    <None Remove="Resources\locationCity3.png" />
+    <None Remove="Resources\locationCountry.png" />
+    <None Remove="Resources\locationPlace.png" />
+    <None Remove="Resources\logo.png" />
+    <None Remove="Resources\more.png" />
+    <None Remove="Resources\parachute.png" />
+    <None Remove="Resources\partner.png" />
+    <None Remove="Resources\remove.png" />
+    <None Remove="Resources\remove1.png" />
+    <None Remove="Resources\search.png" />
+    <None Remove="Resources\service.png" />
+    <None Remove="Resources\startTitle.jpg" />
+    <None Remove="Resources\Tour.png" />
+    <None Remove="Resources\update.png" />
+    <None Remove="Resources\user.png" />
+    <None Remove="Resources\user1.png" />
+    <None Remove="Resources\user2.png" />
+    <None Remove="Resources\visible.png" />
+    <None Remove="Resources\warehouse.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp3.0\Countryes.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp3.0\places.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpressMvvm" Version="19.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="bin\Debug\netcoreapp3.0\AccessConfig.xml" />
+    <Resource Include="Resources\back.png" />
+    <Resource Include="Resources\back1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\client.png" />
+    <Resource Include="Resources\employee.png" />
+    <Resource Include="Resources\import.png" />
+    <Resource Include="Resources\import1.png" />
+    <Resource Include="Resources\loading.gif" />
+    <Resource Include="Resources\accept.png" />
+    <Resource Include="Resources\add.png" />
+    <Resource Include="Resources\clone.png" />
+    <Resource Include="Resources\Competitions.png" />
+    <Resource Include="Resources\CompetitionsLow.png" />
+    <Resource Include="Resources\correct.png" />
+    <Resource Include="Resources\Courses.png" />
+    <Resource Include="Resources\CoursesLow.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\error.png" />
+    <Resource Include="Resources\hidden.png" />
+    <Resource Include="Resources\ImgEdit.bmp" />
+    <Resource Include="Resources\jet.png" />
+    <Resource Include="Resources\loading1.gif" />
+    <Resource Include="Resources\locationCapital.png" />
+    <Resource Include="Resources\locationCity.png" />
+    <Resource Include="Resources\locationCity1.png" />
+    <Resource Include="Resources\locationCity2.png" />
+    <Resource Include="Resources\locationCity3.png" />
+    <Resource Include="Resources\locationCountry.png" />
+    <Resource Include="Resources\locationPlace.png" />
+    <Resource Include="Resources\logo.png" />
+    <Resource Include="Resources\more.png" />
+    <Resource Include="Resources\parachute.png" />
+    <Resource Include="Resources\partner.png" />
+    <Resource Include="Resources\remove.png" />
+    <Resource Include="Resources\remove1.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\service.png" />
+    <Resource Include="Resources\startTitle.jpg" />
+    <Resource Include="Resources\Tour.png" />
+    <Resource Include="Resources\update.png" />
+    <Resource Include="Resources\user.png" />
+    <Resource Include="Resources\user1.png" />
+    <Resource Include="Resources\user2.png" />
+    <Resource Include="Resources\visible.png" />
+    <Resource Include="Resources\warehouse.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Maps.MapControl.WPF">
+      <HintPath>..\..\..\..\..\..\Software\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

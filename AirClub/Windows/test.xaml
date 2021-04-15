@@ -1,0 +1,78 @@
+﻿<Window x:Class="AirClub.Windows.test"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirClub.Windows"
+        mc:Ignorable="d"
+        Title="test" Height="450" Width="800">
+    <Grid>
+        <TreeView x:Name="tree" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Places}">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <StackPanel.ContextMenu>
+                            <ContextMenu >
+                                <MenuItem Header="Добавить на этом уровне"/>
+                                <MenuItem Header="Добавить дочерний элемент"/>
+                                <MenuItem Header="Редактировать"/>
+                                <MenuItem Header="Удалить"/>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                        
+                        <Image x:Name="image" Height="20">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding PlaceType}" Value="Country">
+                                            <Setter Property="Source" 
+                                                    Value="\Resources\locationCountry.png"/>
+
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding PlaceType}" Value="Capital">
+                                            <Setter Property="Source" 
+                                                    Value="\Resources\locationCapital.png"/>
+
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding PlaceType}" Value="City">
+                                            <Setter Property="Source" 
+                                                    Value="\Resources\locationCity3.png"/>
+
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding PlaceType}" Value="Place">
+                                            <Setter Property="Source" 
+                                                    Value="\Resources\locationPlace.png"/>
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <TextBlock Margin="10 0 0 0" 
+                                   Text="{Binding Name}"
+                                   FontSize="14"
+                                   x:Name="text" FontFamily="Trebuchet MS"/>
+                    </StackPanel>
+                    
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <DataGrid Width="100" Height="100" x:Name="grid">
+        </DataGrid>
+
+        <StackPanel>
+            <Button Width="150" Height="25" x:Name="button" Content="Button" Click="button_Click"/>
+            <TextBox TextChanged="tb_TextChanged" x:Name="tb" Margin="0 15"  Width="150" Height="25"/>
+
+            <Button Width="150" Height="25" x:Name="button1" Content="Найти" Click="button1_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

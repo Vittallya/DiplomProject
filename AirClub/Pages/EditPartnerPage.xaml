@@ -1,0 +1,108 @@
+﻿<Page x:Class="AirClub.Pages.EditPartnerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AirClub.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:v="clr-namespace:AirClub.ViewModels.Validators"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      DataContext="{Binding EditPartnerViewModel, Source={StaticResource ViewModelLocator}}"
+      Title="{Binding Title}">
+
+    <StackPanel Validation.Error="stack_Error" x:Name="stack" Margin="20 0" TextBlock.FontSize="12.5" MaxWidth="550"   MinWidth="250" >
+
+
+        <DockPanel Margin="0 5">
+            <TextBlock Text="Название организации" DockPanel.Dock="Top"/>
+            <TextBox 
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                IsReadOnly="{Binding IsReadOnly}"
+                Margin="0 5 0 0" 
+                FontSize="16">
+                <Binding Path="CurrentElement.Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                    <Binding.ValidationRules>
+                        <v:TextBoxRule/>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+        </DockPanel>
+
+        <DockPanel  Margin="0 5">
+            <TextBlock Text="ИНН" DockPanel.Dock="Top"/>
+            <TextBox 
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                IsEnabled="{Binding IsReadOnly, Converter={StaticResource BoolInvert}}"
+                Margin="0 5 0 0" 
+                FontSize="14">
+                <Binding Path="CurrentElement.INN" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                    <Binding.ValidationRules>
+                        <v:InnValidator/>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+
+            </TextBox>
+        </DockPanel>
+        <DockPanel  Margin="0 5">
+            <TextBlock Text="Адрес" DockPanel.Dock="Top"/>
+            <TextBox 
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                IsEnabled="{Binding IsReadOnly, Converter={StaticResource BoolInvert}}"
+                Margin="0 5 0 0" 
+                FontSize="14">
+                <Binding Path="CurrentElement.Address" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                    <Binding.ValidationRules>
+                        <v:TextBoxRule/>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+
+            </TextBox>
+        </DockPanel>
+
+        <DockPanel  Margin="0 5">
+            <TextBlock Text="Сфера деятельности" DockPanel.Dock="Top"/>
+            <TextBox 
+                Style="{StaticResource ValidationControl}"
+                Padding="2"
+                IsEnabled="{Binding IsReadOnly, Converter={StaticResource BoolInvert}}"
+                Margin="0 5 0 0" 
+                FontSize="14">
+                <Binding Path="CurrentElement.FieldOfActivity" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                    <Binding.ValidationRules>
+                        <v:TextBoxRule/>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+
+            </TextBox>
+        </DockPanel>
+
+        <Button 
+            x:Name="btn"
+            HorizontalContentAlignment="Center" 
+            Command="{Binding Accept}"  
+            Margin="0 10" 
+            Padding="0 4">
+
+            <Grid Height="30" >
+                <Image gif:ImageBehavior.AnimatedSource="/Resources/loading1.gif"
+                       gif:ImageBehavior.RepeatBehavior="Forever"
+                       Margin="-35 0 0 0"
+                       Visibility="{Binding LoadingVisibility}"
+                       HorizontalAlignment="Left"/>
+                <TextBlock 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" Text="Применить"/>
+            </Grid>
+        </Button>
+
+
+    </StackPanel>
+</Page>

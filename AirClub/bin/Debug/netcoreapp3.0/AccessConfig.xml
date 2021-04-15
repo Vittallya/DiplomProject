@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<ArrayOfAccessSection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AccessSection Index="101" Name="Доступ к базе сотрудников">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование данных" Value="2" />
+      <AccessParam Name="Чтение и редактирование данных (в т.ч, чтение логина и пароля)" Value="3" />
+      <AccessParam Name="Чтение и редактирование данных (в т.ч. логина и пароля)" Value="4" />
+      <AccessParam Name="Чтение и редактирование (в т.ч. логина и пароля и чтение кода доступа)" Value="5" />
+      <AccessParam Name="Чтение и редактирование всех данных" Value="6" />
+
+    </Params>
+  </AccessSection>
+  <AccessSection Index="102" Name="Возможность добавления сотрудников">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+  
+  <AccessSection Index="103" Name="Доступ к базе специальностей">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование данных" Value="2" />
+      <AccessParam Name="Чтение и редактирование (в т.ч. чтение кода доступа)" Value="3" />
+      <AccessParam Name="Чтение и редактирование всех данных" Value="4" />
+
+    </Params>
+  </AccessSection>
+  
+  <AccessSection Index="104" Name="Возможность добавления специальностей">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="105" Name="Доступ к базе клиентов">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="106" Name="Возможность добавления клиентов">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="107" Name="Доступ к базе услуг">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="108" Name="Возможность добавления услуг">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="109" Name="Доступ к базе туров">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="110" Name="Возможность добавления туров">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+
+  <AccessSection Index="111" Name="Доступ к базе трансферов">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="112" Name="Возможность добавления трансферов">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+
+  <AccessSection Index="113" Name="Доступ к базе страховок">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="114" Name="Возможность добавления страховок">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+
+
+  <AccessSection Index="115" Name="Доступ к базе бронирования">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="116" Name="Возможность добавления брони">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+
+  <AccessSection Index="117" Name="Доступ к разделу 'Склад'">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="118" Name="Возможность добавления объектов в разделе 'Склад'">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="119" Name="Доступ к базе партнеров">
+    <Params>
+      <AccessParam Name="Нет доступа" Value="0" />
+      <AccessParam Name="Только для чтения" Value="1" />
+      <AccessParam Name="Чтение и редактирование" Value="2" />
+
+    </Params>
+  </AccessSection>
+
+  <AccessSection Index="120" Name="Возможность добавления партнеров">
+    <Params>
+      <AccessParam Name="Нет" Value="0" />
+      <AccessParam Name="Да" Value="1" />
+    </Params>
+  </AccessSection>
+
+</ArrayOfAccessSection>

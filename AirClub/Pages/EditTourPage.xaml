@@ -1,0 +1,196 @@
+﻿<Page x:Class="AirClub.Pages.EditTourPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AirClub.Pages"
+      mc:Ignorable="d" 
+      x:Name="page"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:v="clr-namespace:AirClub.ViewModels.Validators"
+      DataContext="{Binding EditTourViewModel, Source={StaticResource ViewModelLocator}}"
+      Title="{Binding Title}">
+
+    <StackPanel Validation.Error="StackPanel_Error" Margin="20 0" TextBlock.FontSize="12.5" MaxWidth="750"   MinWidth="200" >
+
+        <DockPanel Margin="0 5">
+            <TextBlock Text="Название" DockPanel.Dock="Top"/>
+            <TextBox 
+                Padding="2"
+                IsReadOnly="{Binding IsReadOnly}"
+                Margin="0 5 0 0" 
+                Style="{StaticResource ValidationControl}"
+                FontSize="16">
+                <Binding Path="CurrentElement.Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" >
+                    <Binding.ValidationRules>
+                        <v:TextBoxRule/>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+        </DockPanel>
+
+        <GroupBox Padding="4 5" Header="Трансферы">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl  ItemsSource="{Binding Transfers}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+
+                            <DockPanel>
+                                <Button 
+                                    DockPanel.Dock="Right" 
+                                    Margin="10 0" 
+                                    DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page} }"
+                                    Command="{Binding RemoveTransfer}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DockPanel}}"
+                                    Style="{StaticResource ButtonIcon}" >
+                                    <Image Height="25" Source="/Resources/remove1.png"/>
+                                </Button>
+
+                                <Button 
+                                    DockPanel.Dock="Right" 
+                                    Margin="10 0" 
+                                    DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page} }"
+                                    Command="{Binding UpdateTransfer}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DockPanel}}"
+                                    Style="{StaticResource ButtonIcon}" >
+                                    <Image Height="25" Source="/Resources/update.png"/>
+                                </Button>
+
+                                <StackPanel Margin="0 7">
+
+                                <TextBlock Text="{Binding Name}" FontSize="16"/>
+
+                                <TextBlock Margin="0 5" FontSize="14">
+
+                            <Run Text="Откуда:"/>
+                            <Run FontWeight="Bold" Text="{Binding TransferAPoint}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="14">
+                            
+                                <Run Text="Куда:"/>
+                                <Run FontWeight="Bold" Text="{Binding TransferBPoint}"/>
+                                </TextBlock>
+
+                                <TextBlock Margin="0 5" FontSize="14">
+                                <Run Text="Транспорт: "/>
+                                <Run FontWeight="Bold" Text="{Binding Transport}"/>
+                                </TextBlock>
+
+                                <TextBlock  FontSize="14">
+                                <Run Text="Транспортная компания: "/>
+                                <Run FontWeight="Bold" Text="{Binding Partner.Name}"/>
+                                </TextBlock>
+
+                            </StackPanel>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </GroupBox>
+        <Button 
+            Content="Добавить трансфер" 
+            Margin="0 5" 
+            Command="{Binding AddTransfer}"
+            Padding="7 3" 
+            HorizontalAlignment="Right" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+
+                                <Border
+                                    CornerRadius="4"
+                                    Opacity="1" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" >
+
+                                    <StackPanel 
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"                                         
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                        Orientation="Horizontal">
+
+                                        <Grid>
+                                            <Line x:Name="line1" X1="0" X2="18" Y1="9" Y2="9" StrokeThickness="2" Stroke="{TemplateBinding BorderBrush}" />
+
+                                            <Line x:Name="line2" X1="9" X2="9" Y1="0" Y2="18" StrokeThickness="2" Stroke="{TemplateBinding BorderBrush}" />
+                                        </Grid>
+
+                                        <ContentPresenter Margin="10 0"  RecognizesAccessKey="True"  />
+                                    </StackPanel>
+                                    
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        
+                                        <Trigger.Setters>
+                                            <Setter  Property="BorderBrush" Value="Black"/>
+                                            <Setter TargetName="line1" Property="Stroke" Value="Black"/>
+                                            <Setter TargetName="line2" Property="Stroke" Value="Black"/>
+                                        </Trigger.Setters>
+                                    </Trigger>
+
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0.2" To="0.97" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" />
+                                                    <DoubleAnimation Duration="0:0:0.2" To="0.97" Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" />
+
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.Setters>
+                                            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                                            <Setter Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger.Setters>
+                                    </Trigger>
+
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter Property="Opacity" Value="0.6"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button 
+            x:Name="btn"
+            HorizontalContentAlignment="Center" 
+            Command="{Binding Accept}"  
+            Margin="0 10" 
+            Padding="0 4">
+
+            <Grid Height="30" >
+                <Image gif:ImageBehavior.AnimatedSource="/Resources/loading1.gif"
+                       gif:ImageBehavior.RepeatBehavior="Forever"
+                       Margin="-35 0 0 0"
+                       Visibility="{Binding LoadingVisibility}"
+                       HorizontalAlignment="Left"/>
+                <TextBlock 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" Text="Применить"/>
+            </Grid>
+        </Button>
+
+
+    </StackPanel>
+</Page>

@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:AirClub.ResoursesXamlAC"
+                    xmlns:gif="http://wpfanimatedgif.codeplex.com">
+
+                    <Image 
+                        x:Key="Image_LoadingGif"
+                        HorizontalAlignment="Right"
+                        gif:ImageBehavior.AnimatedSource="/Resources/loading1.gif" 
+                        gif:ImageBehavior.RepeatBehavior="Forever" 
+                        Height="30"/>
+</ResourceDictionary>

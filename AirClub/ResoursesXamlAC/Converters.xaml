@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local_conv="clr-namespace:AirClub.ResoursesXamlAC"
+                    xmlns:local="clr-namespace:AirClub">
+    <local_conv:ConverterBoolInvert x:Key="BoolInvert"/>
+    <local_conv:ConverterBoolToVisibility x:Key="BoolToVisibility"/>
+    <local_conv:ConverterBoolToVisibilityInvert x:Key="BoolToVisibilityInvert"/>
+    <local_conv:ConverterNullToVisibility x:Key="NullToVisibility"/>
+    <local_conv:ConverterNullToVisibilityInvert x:Key="NullToVisibilityInvert"/>
+    <local_conv:ConverterVisibilityInvert x:Key="VisibilityInvert"/>
+    <local_conv:ConverterMinuteToTimeSpan x:Key="MinuteToTimeSpan"/>
+
+</ResourceDictionary>

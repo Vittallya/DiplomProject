@@ -1,0 +1,202 @@
+﻿<Page x:Class="AirClub.Pages.ElementsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AirClub.Pages"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      xmlns:col="clr-namespace:System.Collections;assembly=System.Runtime.Extensions"
+      mc:Ignorable="d" 
+      x:Name="main"
+      
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="{Binding Title}">
+
+    
+    <Grid>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        
+        <Expander
+                ExpandDirection="Right"
+                Visibility="{Binding FilterVisibility }"            
+                Margin="0 0 5 0" 
+                Grid.Column="0"
+                Grid.Row="1"
+                BorderThickness="1"
+                BorderBrush="#FF828790">
+            <Expander.Header>
+                <TextBlock 
+                        Margin="5"
+                        Text="Фильтр" 
+                        FontFamily="Century Gothic" 
+                        FontSize="14">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+
+            <ItemsControl    
+                    Margin="5 0"
+                    ItemsSource="{Binding FilterParams}" 
+                    BorderBrush="{x:Null}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Margin="0 5" >
+                            <TextBlock DockPanel.Dock="Top" Margin="0 0 0 5"  Text="{Binding Name}"/>
+
+                            <ContentPresenter 
+                                    Content="{Binding Control}"
+                                    MinWidth="150"/>
+                            <Button 
+                                        HorizontalAlignment="Left"
+                                        Command="{Binding Clear}"
+                                        Style="{StaticResource ButtonIcon}">
+                                <Image Height="23" Source="/AirClub;component/Resources/remove1.png"/>
+                            </Button>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Expander>
+        <DockPanel  Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+            
+            
+            <Grid Grid.Column="1" Grid.Row="1" Background="#FFFAFAFA">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition  Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                
+                <ScrollViewer
+                        
+            DockPanel.Dock="Top"
+            VerticalScrollBarVisibility="Auto">
+                    <ListView 
+                        Visibility="{Binding ListBoxVisibility, UpdateSourceTrigger=PropertyChanged}"   
+                        x:Name="MainList"
+                        GridViewColumnHeader.Click="GridViewHeader_Click"
+                        View="{Binding GridView, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedElement, UpdateSourceTrigger=PropertyChanged}"
+                        ItemsSource="{Binding Elements, UpdateSourceTrigger=PropertyChanged}"
+                        SelectionMode="{Binding SelectionMode}"
+                        Background="{x:Null}" FontSize="14">
+
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem 
+                                    Visibility="{Binding SelectElementVisibility}"
+                                    Command="{Binding Select}" Header="Выбрать" FontWeight="Bold"/>
+                                <MenuItem Visibility="{Binding AddElementVisibility}" 
+                                          Command="{Binding AddNewElement}" 
+                                          Header="Добавить новый"/>
+                                <MenuItem Visibility="{Binding ViewElementVisibility}" 
+                                          Command="{Binding ViewSelectedElement}" 
+                                          Header="Просмотр"/>
+
+                                <MenuItem Visibility="{Binding EditElementVisibility}" 
+                                          Command="{Binding EditSelectedElement}" 
+                                          Header="Редактировать"/>
+
+                                <MenuItem Visibility="{Binding EditElementVisibility}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView, Mode=FindAncestor}, Path=SelectedItems}"                                          
+                                          Command="{Binding RemoveSelectedElement}"                                           
+                                          Header="Удалить"/>
+                                
+                                <MenuItem                                         
+                                          Command="{Binding UpdateTable}"                                           
+                                          Header="Обновить"/>
+                                
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                        
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding ElementDoubleClicked}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListView>
+
+                </ScrollViewer>
+                <Expander
+                    ExpandDirection="Up"
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom" Background="#FFF1F1F1">
+                    <StackPanel                            
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+
+
+
+                        <Button 
+                            Visibility="{Binding AddElementVisibility}"
+                            Command="{Binding AddNewElement}"
+                            Margin="5"
+                            Style="{DynamicResource ButtonIcon}">
+                            <Image Height="40" Source="/Resources/add.png"/>
+                        </Button>
+
+                        <Button 
+                        Visibility="{Binding EditElementVisibility}"
+                        Command="{Binding EditSelectedElement}"
+                        Margin="5"
+                        Style="{DynamicResource ButtonIcon}">
+                            <Image Height="35" Source="/Resources/edit.png"/>
+                        </Button>
+
+                        <Button 
+                    Visibility="{Binding ViewElementVisibility}"
+                    Command="{Binding ViewSelectedElement}"
+                    Margin="5"
+                    Style="{DynamicResource ButtonIcon}">
+                            <Image Height="35" Source="/Resources/search.png"/>
+                        </Button>
+                        <Button 
+                    Command="{Binding RemoveSelectedElement}"
+                    CommandParameter="{Binding ElementName=MainList, Path=SelectedItems}"
+                    Visibility="{Binding RemoveElementVisibility}"
+                    Margin="5"
+                    Style="{DynamicResource ButtonIcon}">
+                            <Image Height="35" Source="/Resources/remove.png"/>
+                        </Button>
+                        <Button 
+                            Visibility="{Binding SelectElementVisibility}"
+                            Command="{Binding Select}"
+                            Margin="5"
+                            Padding="10 0"
+                            Content="Выбрать"/>
+                    </StackPanel>
+                </Expander>
+                
+                
+                
+            </Grid>
+        </DockPanel>
+        <Rectangle 
+                    
+                    Opacity="{Binding Alpha}"
+                    Visibility="{Binding LoadingVisibility}" 
+                    Grid.ColumnSpan="2"
+                    Fill="White"/>
+        <Image 
+                    Opacity="{Binding Alpha}"
+                    Visibility="{Binding LoadingVisibility}"
+                    Grid.ColumnSpan="2"
+                    Height="100" 
+                    gif:ImageBehavior.RepeatBehavior="Forever"
+                    gif:ImageBehavior.AnimatedSource="/Resources/loading1.gif"/>
+        
+
+    </Grid>
+</Page>
